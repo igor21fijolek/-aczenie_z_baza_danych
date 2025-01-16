@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="start()">
     <h1>dodwanie ksiazek do dazy danych</h1>
     <div id="main">
         <label for="ksiazka"><b>tytul ksiazki</b></label>
@@ -17,16 +17,8 @@
         <label for="autor"><b>autor ksiazki</b></label>
         <input type="text" name="autor" id="autor">
         <br><br>
-        <button onclick="dodai()">dodaj ksiazke do bazy danych</button>
+        <button>dodaj ksiazke do bazy danych</button>
     </div>
-   <div id="tabela">
-        <table>
-            <tr>
-                <th>tytul</th>
-                <th>autor</th>
-            </tr>
-        </table>
-   </div>
    <script src="app.js"></script>
 </body>
 

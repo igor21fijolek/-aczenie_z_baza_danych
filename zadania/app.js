@@ -1,7 +1,5 @@
-
-
-
-
+let btn = document.querySelector("button")
+let main = document.getElementById("main")
 // btn.addEventListener("click", function(){
 //     console.log("object");
 //     let tr = document.createElement("tr")
@@ -21,33 +19,38 @@ async function dodai() {
     const url = `http://localhost:3000/get-book/${ksiazka}/${autor}`
     fetch(url)
 }
-let json = []
  async function start(){
-    let tabla = document.querySelector("table")
-    const url = `http://localhost:3000/books`
-    let data = await fetch(url)
-    json = await data.json()
-    console.log(json);
-    for(let i=0;i<json.length;i++){
+    let tab = document.querySelector("table");
+    if(tab != null){tab.remove()}
+    let tabela = document.createElement("table")
+    tabela.innerHTML = `        
+        <table>
+            <tr>
+                <th>id</th>
+                <th>tytul</th>
+                <th>autor</th>
+            </tr>
+        </table>`
+    let data = await fetch("http://localhost:3000/books")
+    data = await data.json()
+    console.log(data);
+    for(let i=0;i<data.length;i++){
         const tr = document.createElement("tr")
-        tabla.appendChild(tr)
-        const td1 = document.createElement("td")
-        td1.innerHTML=  json[i].title
-        const td2 = document.createElement("td")
-        td2.innerHTML=  json[i].author
-
-        tr.appendChild(td1)
-        tr.appendChild(td2)
-
+        tabela.appendChild(tr)
+        main.appendChild(tabela)
+        const idtd = document.createElement('td')
+        idtd.innerHTML = data[i].id
+        const titletd = document.createElement("td")
+        titletd.innerHTML = data[i].title
+        const authortd = document.createElement("td")
+        authortd.innerHTML = data[i].author
+        tr.appendChild(idtd)
+        tr.appendChild(titletd)
+        tr.appendChild(authortd)
     }
  }
-start()
-let btn = document.querySelector("button")
 
 btn.addEventListener("click", async function(){
-    const url = `http://localhost:3000/books`
-    const data = await fetch(url)
-    json = await data.json()
-
-}
-)
+    await dodai();
+    await start()
+})
