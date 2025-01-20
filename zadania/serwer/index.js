@@ -33,6 +33,19 @@ app.get("/get-book/:title/:autor", (req,res)=>{
     })
 })
 
+app.get("/update-book/:Newtitle/:Newautor", (req,res)=>{
+    let Newtitle = req.params.Newtitle
+    let Newautor = req.params.Newautor
+
+    const sql = `update books set title = `'${Newtitle}'`, set author = `'${Newautor}'`
+
+    con.query(sql, (err,wynik,info_wynik)=>{
+        res.send("dodano rekord");
+        console.log("ok");
+    })
+})
+
+
 app.get("/books", (req,res)=>{
     const sql = `Select * from books`
     con.query(sql, (err,wynik,info_wynik)=>{
