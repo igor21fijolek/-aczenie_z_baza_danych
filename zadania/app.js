@@ -35,6 +35,8 @@ async function dodai() {
     data = await data.json()
     console.log(data);
     for(let i=0;i<data.length;i++){
+        let btn  = document.createElement("button")
+        btn.innerHTML = "usun"
         const tr = document.createElement("tr")
         tabela.appendChild(tr)
         main.appendChild(tabela)
