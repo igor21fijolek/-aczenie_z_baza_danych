@@ -13,6 +13,9 @@
         <div class="flex">
             <div class="nav-2">
                 <div class="a">
+                    <a href="strona-glowna.html">strona główna</a>
+                </div>
+                <div class="a">
                     <a href="klient.html">klient</a>
                 </div>
                 <div class="a">
@@ -46,7 +49,14 @@
                 <label for="email">e-mail</label>
                 <input type="email" name="email" id="email">
                 <br>
-                <input type="button" value="pokaz wolne stoliki">
+                <button id="pokaz_wolne_stoliki">pokaz wolne stoliki</button>
+        </div>
+        <div class="propozycja">
+            <h4>zaproponuj danie do menu </h4>
+            <input type="text" name="danie" id="danie" placeholder="podaj nazwe dania">
+            <input type="number" name="cena_danie" id="cena_danie" placeholder="podaj cene dania"><br>
+            <input type="text" name="typ_dania" id="typ_dania" placeholder="podaj typ dania">
+            <button id="dodaj_propozycje">dodaj propozycje</button> 
         </div>
     </div>
     <script src="app.js"></script>

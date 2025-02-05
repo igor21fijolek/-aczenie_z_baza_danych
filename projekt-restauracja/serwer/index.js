@@ -11,7 +11,7 @@ var con =  mysql.createConnection({
     database:'restauracja',
 })
 
-con.connect((err)=>{
+con.connect((err)=>{ 
     if(!err){
         console.log('polczono z baza');
     }else{
@@ -28,7 +28,7 @@ app.get("/get-stoliki", (req,res)=>{
     })
 })
 
-// wyswietlanie kleintow
+// wyswietlanie klientow
 app.get("/klienci", (req,res)=>{
     const sql = `select * from klienci`
     con.query(sql, (err, wynik, info_wynik)=>{
@@ -46,14 +46,28 @@ app.get("/get-menu", (req,res)=>{
     })
 })
 
-// dodanie sugesti klienta do tabeli
-app.get("/add-sugestion", (req,res)=>{
-    const sql = `insert into `
+// dodanie sugesti klienta do tabeli propozycje
+app.get("/add-sugestion/:danie/:id", (req,res)=>{
+    let danie = req.params.danie
+    let id_klienta = req.params.id
+    const sql = `insert into propozycje_klientow (nazwa, id_klienta) values ('${danie}', ${id_klienta})`
     con.query(sql, (err, wynik, info_wynik)=>{
         res.send("dodano rekord")
         console.log(info_wynik);
     })
 })
+
+//wyswietlanie sugesti klienta
+app.get("/get-sugestion", (req,res)=>{
+    const sql = `select * from propozycje_klientow`
+    con.query(sql, (err, wynik, info_wynik)=>{
+        res.send(wynik)
+        console.log(info_wynik);
+    })
+})
+
+
+
 
 app.listen(3000, ()=>{
     console.log('dziala');
