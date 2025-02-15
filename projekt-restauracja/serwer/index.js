@@ -67,7 +67,18 @@ app.get("/get-sugestion", (req,res)=>{
 })
 
 
+//dodawanie do menu
+app.get("/menu-add/:nazwa/:cena/:typ_dania", (req,res)=>{
+    let nazwa = req.params.nazwa
+    let cena = parseInt(req.params.cena)
+    let typ_dania = req.params.typ_dania
 
+    const sql = `insert into menu (nazwa, cena , typ_dania) values ('${nazwa}', ${cena}, '${typ_dania}')`
+    con.query(sql,(err,wynik, info_wynik)=>{
+        res.send("dodano do menu")
+        console.log(info_wynik);
+    })
+})
 
 app.listen(3000, ()=>{
     console.log('dziala');

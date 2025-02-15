@@ -38,8 +38,12 @@
         <div class="main">
             <label for="dodawanie">dodawanie do menu</label>
             <br> 
-            <input type="text" name="dodawanie" id="dodawanie" placeholder="podaj nazwe dania">
-            <input type="button" value="dodaj" id="dodaj_do_menu">
+            <input type="text" name="nazwa_dania" id="nazwa_dania" placeholder="podaj nazwe dania">
+            <br>
+            <input type="number" name="cena" id="cena" placeholder="podaj cene dania">
+            <br>
+            <input type="text" name="typ_dania" id="typ_dania" placeholder="podaj typ dania">
+            <button onclick="dodaj_menu()" id="dodaj_do_menu">dodaj do menu</button>
         </div>
     </div>
     <script src="app.js"></script>
