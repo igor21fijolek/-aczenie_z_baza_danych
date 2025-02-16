@@ -125,3 +125,10 @@ table {
     display: block; 
     margin-bottom: 20px; /* Dodaje margines dolny */
 }
+button {
+    padding: 5px ;
+    border: none;
+    border-radius: 5px;
+    background-color: darkgray;
+    color: black
+}

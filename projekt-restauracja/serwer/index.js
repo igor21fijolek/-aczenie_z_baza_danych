@@ -80,6 +80,20 @@ app.get("/menu-add/:nazwa/:cena/:typ_dania", (req,res)=>{
     })
 })
 
+//zapsiuwanie sie klientow
+app.get("/client-add/:imie/:nazwisko/:telefon/:email",(req,res)=>{
+    let imie = req.params.imie
+    let nazwisko = req.params.nazwisko
+    let telefon = req.params.telefon
+    let email = req.params.email
+
+    const sql = `insert into klienci (imie,nazwisko,telefon,email) values ('${imie}','${nazwisko}','${telefon}','${email}')`
+    con.query(sql,(err,wynik,info_wynik)=>{
+        res.send("zapsisano do restauracji")
+        console.log(info_wynik);
+    })
+})
+
 app.listen(3000, ()=>{
     console.log('dziala');
 })

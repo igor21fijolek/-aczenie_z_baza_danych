@@ -32,18 +32,42 @@ async function menu(){
     main.appendChild(tabela)
 }
 
-async function dodaj_menu(){
-    let danie = document.getElementById("nazwa_dania").value
-    let cena = document.getElementById("cena").value
-    let typ_dania = document.getElementById("typ_dania").value
+async function dodaj_menu() {
+    let danieInput = document.getElementById("nazwa_dania");
+    let cenaInput = document.getElementById("cena");
+    let typDaniaInput = document.getElementById("typ_dania");
 
-    await fetch(`http://localhost:3000/menu-add/${danie}/${cena}/${typ_dania}`)
+    let danie = danieInput.value;
+    let cena = cenaInput.value;
+    let typ_dania = typDaniaInput.value;
 
-    alert("dodano do menu")
+    await fetch(`http://localhost:3000/menu-add/${danie}/${cena}/${typ_dania}`);
+
+    alert("Dodano do menu");
+
+  
+    danieInput.value = "";
+    cenaInput.value = "";
+    typDaniaInput.value = "";
+}
+
+async function zapsiz_klienta() {
+    let imieInput = document.getElementById("imie");
+    let nazwiskoInput = document.getElementById("nazwisko");
+    let telefonInput = document.getElementById("telefon");
+    let emailInput = document.getElementById("email");
+
+    let imie = imieInput.value;
+    let nazwisko = nazwiskoInput.value;
+    let telefon = telefonInput.value;
+    let email = emailInput.value;
+
+    await fetch(`http://localhost:3000/client-add/${imie}/${nazwisko}/${telefon}/${email}`);
+    alert("Dodano do restauracji");
 
     
-
-    danie.value  = ' '
-    cena.value  = ' '
-    typ_dania.value  = ' '
+    imieInput.value = "";
+    nazwiskoInput.value = "";
+    telefonInput.value = "";
+    emailInput.value = "";
 }
