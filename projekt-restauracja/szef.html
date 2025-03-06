@@ -33,17 +33,35 @@
             </div>
         </div>
         <div class="baner">
-            <h1> dla szefa  </h1>
+            <h1> dla szefa </h1>
         </div>
-        <div class="main">
-            <label for="dodawanie">dodawanie do menu</label>
-            <br> 
-            <input type="text" name="nazwa_dania" id="nazwa_dania" placeholder="podaj nazwe dania">
-            <br>
-            <input type="number" name="cena" id="cena" placeholder="podaj cene dania">
-            <br>
-            <input type="text" name="typ_dania" id="typ_dania" placeholder="podaj typ dania">
-            <button onclick="dodaj_menu()" id="dodaj_do_menu">dodaj do menu</button>
+        <hr>
+        <div class="main-szef">
+            <div id="danie">
+                <label for="dodawanie">dodawanie do menu</label>
+                <br>
+                <input type="text" name="nazwa_dania" id="nazwa_dania" placeholder="podaj nazwe dania">
+                <input type="number" name="cena" id="cena" placeholder="podaj cene dania">
+                <input type="text" name="typ_dania" id="typ_dania" placeholder="podaj typ dania">
+                <button onclick="dodaj_menu()" id="dodaj_do_menu">dodaj do menu</button>
+                
+            </div>
+            <hr>
+            <div id="stolik">
+                <input type="number" name="liczba_os" id="liczba_os" placeholder="podaj liczbe osob">
+                <input type="text" name="czy_zarezerwowane" id="czy_zarezerwowane" placeholder="czy zarezerwowany">
+                <button onclick="dodaj_stolik()">dodaj stolik</button>
+                
+            </div>
+            <hr>
+            <div id="rezerwacje">
+                
+            </div>
+            <hr>
+            <div id="propozycje">
+                <hr>
+            </div>
+            <hr>    
         </div>
     </div>
     <script src="app.js"></script>

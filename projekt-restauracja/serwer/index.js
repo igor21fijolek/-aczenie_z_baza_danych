@@ -28,14 +28,25 @@ app.get("/get-stoliki", (req,res)=>{
     })
 })
 
-// wyswietlanie klientow
-app.get("/klienci", (req,res)=>{
-    const sql = `select * from klienci`
+// dodawanie stolika
+app.get("/add-stolik/:ilosc_osob/:czy_zarezerwowane", (req,res)=>{
+    let ilosc_osob = parseInt(req.params.ilosc_osob)
+    let czy_zarezerwowane = req.params.czy_zarezerwowane
+    const sql = `insert into stoliki (max_liczba_os, czy_zarezerwowano) values (${ilosc_osob}, '${czy_zarezerwowane}')`
     con.query(sql, (err, wynik, info_wynik)=>{
-        res.send(wynik)
+        res.send("dodano stolik")
         console.log(info_wynik);
     })
 })
+
+// // wyswietlanie klientow
+// app.get("/klienci", (req,res)=>{
+//     const sql = `select * from klienci`
+//     con.query(sql, (err, wynik, info_wynik)=>{
+//         res.send(wynik)
+//         console.log(info_wynik);
+//     })
+// })
 
 // wyswietlanie menu
 app.get("/get-menu", (req,res)=>{
@@ -47,10 +58,12 @@ app.get("/get-menu", (req,res)=>{
 })
 
 // dodanie sugesti klienta do tabeli propozycje
-app.get("/add-sugestion/:danie/:id", (req,res)=>{
+app.get("/add-sugestion/:danie/:typDania/:cena/:id", (req,res)=>{
     let danie = req.params.danie
-    let id_klienta = req.params.id
-    const sql = `insert into propozycje_klientow (nazwa, id_klienta) values ('${danie}', ${id_klienta})`
+    let typ_dania = req.params.typDania
+    let cena = parseFloat(req.params.cena)
+    let id_klienta = parseInt(req.params.id)
+    const sql = `insert into propozycje_klientow (nazwa, typ_dania, cena, id_klienta) values ('${danie}', '${typ_dania}', ${cena}, ${id_klienta})`
     con.query(sql, (err, wynik, info_wynik)=>{
         res.send("dodano rekord")
         console.log(info_wynik);

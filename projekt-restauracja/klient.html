@@ -22,7 +22,7 @@
                     <a href="menu.html">menu</a>
                 </div>
                 <div class="a">
-                    <a href="rezerwacja.html">rezerwacja</a>
+                    <a href="stoliki.html">stoliki</a>
                 </div>
                 <div class="a">
                     <a href="szef.html">szef</a>
@@ -35,29 +35,31 @@
         <div class="baner">
             <h1> Zarejestruj sie do naszej restauracji </h1>
         </div>
-        <div class="main">
-            <div class="rejestracja">
-                <label for="imie">imie</label>
-                <input type="text" name="imie" id="imie">
+        <hr>
+        <div class="main-klient">
+            <div id="rejestracja">
+                <input type="text" name="imie" id="imie" placeholder="podaj imie">
                 <br>
-                <label for="nazwisko">nazwisko</label> 
-                <input type="text" name="nazwisko" id="nazwisko">
+                <input type="text" name="nazwisko" id="nazwisko" placeholder="podaj nazwisko">
                 <br>
-                <label for="telefon">telefon</label>
-                <input type="text" name="telefon" id="telefon">
+                <input type="text" name="telefon" id="telefon" placeholder="podaj telefon">
                 <br>
-                <label for="email">e-mail</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" placeholder="podaj email">
                 <br>
                 <button  onclick="zapsiz_klienta()" id="zapisz">zapisz sie do restauracji</button>
-                <button id="pokaz_wolne_stoliki">pokaz wolne stoliki</button>
         </div>
-        <div class="propozycja">
+        <hr>
+        <div id="propozycja">
             <h4>zaproponuj danie do menu </h4>
             <input type="text" name="danie" id="danie" placeholder="podaj nazwe dania">
-            <input type="number" name="cena_danie" id="cena_danie" placeholder="podaj cene dania"><br>
-            <input type="text" name="typ_dania" id="typ_dania" placeholder="podaj typ dania">
-            <button id="dodaj_propozycje">dodaj propozycje</button> 
+            <input type="text" name="typ_dania" id="typ_dania" placeholder="podaj typ dania"><br>
+            <input type="number" name="cena_danie" id="cena_danie" placeholder="podaj cene dania">
+            <input type="number" name="id_klienta" id="id_klienta" placeholder="podaj id klienta"><br>
+            <button id="dodaj_propozycje" onclick="dodaj_sugestia_klienta()">dodaj propozycje</button> 
+        </div>
+        <hr>
+        <div id="stoliki">
+            <button id="pokaz_wolne_stoliki" onclick="zarezerwuj_stolik()">pokaz wolne stoliki</button>
         </div>
     </div>
     <script src="app.js"></script>

@@ -82,7 +82,7 @@ h1 {
     width: 80%;
     display: flex;
     justify-content: space-evenly;
-    line-height: 15vh;
+    line-height: 10vh;
     background-color: #bebebe; 
     border-radius: 10px;
     height: 100px;
@@ -123,12 +123,62 @@ td,th{
 }
 table {
     display: block; 
-    margin-bottom: 20px; /* Dodaje margines dolny */
-}
+    margin-bottom: 20px; }
 button {
     padding: 5px ;
     border: none;
     border-radius: 5px;
     background-color: darkgray;
     color: black
+}
+hr{
+    width: 95%;
+}
+#danie{
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+#stolik{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+th,td{
+    text-align: center  ;
+}
+#rejestracja{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+#propozycja{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+#propozycja input{
+    width: 20%;
+    margin: 5px;
+}
+#rejestracja input{
+    width: 20%;
+    margin: 5px;
+}
+#stoliki {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#stoliki table {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

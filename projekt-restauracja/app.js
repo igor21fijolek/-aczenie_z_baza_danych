@@ -71,3 +71,101 @@ async function zapsiz_klienta() {
     telefonInput.value = "";
     emailInput.value = "";
 }
+
+async function dodaj_sugestia_klienta() {
+    let nazwaInput = document.getElementById("danie")
+    let typInput = document.getElementById("typ_dania")
+    let cenaInput = document.getElementById("cena_danie")
+    let idInput = document.getElementById("id_klienta")
+
+
+    let nazawa = nazwaInput.value
+    let typ = typInput.value
+    let cena = cenaInput.value
+    let id = idInput.value
+
+    await fetch(`http://localhost:3000/add-sugestion/${nazawa}/${typ}/${cena}/${id}`)
+    alert("Dodano propozycje")
+
+
+    nazwaInput.value = ""
+    typInput.value = ""
+    cenaInput.value = ""
+    idInput.value = ""
+}
+async function dodaj_stolik() {
+    let liczbaOs = document.getElementById("liczba_os")
+    let czyZarezerwowane = document.getElementById("czy_zarezerwowane")
+
+    let liczba_os = liczbaOs.value
+    let czy_zarezerwowane = czyZarezerwowane.value
+
+    await fetch(`http://localhost:3000/add-stolik/${liczba_os}/${czy_zarezerwowane}`)
+    alert("Dodano stolik")
+
+    liczbaOs.value = ""
+    czyZarezerwowane.value = ""
+}
+
+async function pokaz_stolik() {
+    let tab = document.querySelector("table")
+    if (tab != null) { tab.remove() }
+    let tabela = document.createElement("table")
+    tabela.innerHTML = `
+      <table>
+            <tr>
+                <th>lizcba osób</th>
+                <th>czy zarezerwowane</th>
+            </tr>
+        </table>  
+    `
+    let data = await fetch("http://localhost:3000/get-stoliki")
+    data =  await data.json()
+    console.log(data)
+
+    for(let i= 0; i< data.length;i++){
+        const tr = document.createElement("tr")
+        const tdOsoby = document.createElement("td")
+        const tdCzyZare = document.createElement("td")
+        tdOsoby.innerHTML = data[i].max_liczba_os;
+        tdCzyZare.innerHTML = data[i].czy_zarezerwowano;
+        tr.appendChild(tdOsoby)
+        tr.appendChild(tdCzyZare)
+        tabela.appendChild(tr)
+    }
+    main.appendChild(tabela)
+}
+
+async function zarezerwuj_stolik() {
+    let main = document.querySelector(".main-klient")
+    let tab = document.querySelector("table")
+    if (tab != null) { tab.remove() }
+    let tabela = document.createElement("table")
+    tabela.innerHTML = `
+      <table>
+            <tr>
+                <th>lizcba osób</th>
+                <th>czy zarezerwowane</th>
+                <th>zarezerwuj</th>
+            </tr>
+        </table>  
+    `
+    let data = await fetch("http://localhost:3000/get-stoliki")
+    data =  await data.json()
+    console.log(data)
+
+    for(let i= 0; i< data.length;i++){
+        const tr = document.createElement("tr")
+        const tdOsoby = document.createElement("td")
+        const tdCzyZare = document.createElement("td")
+        const tdZare = document.createElement("button")
+        tdOsoby.innerHTML = data[i].max_liczba_os;
+        tdCzyZare.innerHTML = data[i].czy_zarezerwowano;
+       tdZare.innerHTML = "zarezerwuj"
+        tr.appendChild(tdOsoby)
+        tr.appendChild(tdCzyZare)
+        tr.appendChild(tdZare)
+        tabela.appendChild(tr)
+    }
+    main.appendChild(tabela)
+}
