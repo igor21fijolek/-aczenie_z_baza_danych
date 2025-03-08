@@ -100,7 +100,7 @@ async function dodaj_stolik() {
     let liczba_os = liczbaOs.value
     let czy_zarezerwowane = czyZarezerwowane.value
 
-    await fetch(`http://localhost:3000/add-stolik/${liczba_os}/${czy_zarezerwowane}`)
+    await fetch(`http://localhost:3000/add-table/${liczba_os}/${czy_zarezerwowane}`)
     alert("Dodano stolik")
 
     liczbaOs.value = ""
@@ -137,35 +137,45 @@ async function pokaz_stolik() {
 }
 
 async function zarezerwuj_stolik() {
-    let main = document.querySelector(".main-klient")
-    let tab = document.querySelector("table")
-    if (tab != null) { tab.remove() }
-    let tabela = document.createElement("table")
-    tabela.innerHTML = `
-      <table>
-            <tr>
-                <th>lizcba osób</th>
-                <th>czy zarezerwowane</th>
-                <th>zarezerwuj</th>
-            </tr>
-        </table>  
-    `
-    let data = await fetch("http://localhost:3000/get-stoliki")
-    data =  await data.json()
-    console.log(data)
-
-    for(let i= 0; i< data.length;i++){
-        const tr = document.createElement("tr")
-        const tdOsoby = document.createElement("td")
-        const tdCzyZare = document.createElement("td")
-        const tdZare = document.createElement("button")
-        tdOsoby.innerHTML = data[i].max_liczba_os;
-        tdCzyZare.innerHTML = data[i].czy_zarezerwowano;
-       tdZare.innerHTML = "zarezerwuj"
-        tr.appendChild(tdOsoby)
-        tr.appendChild(tdCzyZare)
-        tr.appendChild(tdZare)
-        tabela.appendChild(tr)
+        let main = document.querySelector("#stoliki")
+        let tab = document.querySelector("table")
+        if (tab != null) { tab.remove() }
+        let tabela = document.createElement("table")
+        tabela.innerHTML = `
+          <table>
+                <tr>
+                    <th>liczba osób</th>
+                    <th>czy zarezerwowane</th>
+                    <th>zarezerwuj</th>
+                </tr>
+            </table>  
+        `;
+        let response = await fetch("http://localhost:3000/get-stoliki")
+        let data = await response.json()
+        console.log(data)
+    
+        for (let i = 0; i < data.length; i++) {
+            const tr = document.createElement("tr")
+            const tdOsoby = document.createElement("td")
+            const tdCzyZare = document.createElement("td")
+            const tdZare = document.createElement("button")
+            tdOsoby.innerHTML = data[i].max_liczba_os
+            tdCzyZare.innerHTML = data[i].czy_zarezerwowano
+            tdZare.innerHTML = "zarezerwuj"
+            tdZare.addEventListener("click", async function () {
+                let id_klienta = prompt("podaj id klienta")
+                let id_stolika = data[i].id
+                let data_rezerwacji = prompt("podaj date")
+                let godzina_rezerwacji = prompt("podaj godzine")
+                let liczba_os = data[i].max_liczba_os
+                await fetch(`http://localhost:3000/add-rezerwacja/${id_klienta}/${id_stolika}/${data_rezerwacji}/${godzina_rezerwacji}/${liczba_os}`)
+                alert("zarezerwowano")
+                pokaz_stolik()
+            })
+            tr.appendChild(tdOsoby)
+            tr.appendChild(tdCzyZare)
+            tr.appendChild(tdZare)
+            tabela.appendChild(tr)
+        }
+        main.appendChild(tabela)
     }
-    main.appendChild(tabela)
-}

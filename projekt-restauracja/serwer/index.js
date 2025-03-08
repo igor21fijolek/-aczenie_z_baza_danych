@@ -1,7 +1,9 @@
 const express = require("express")
 const cors = require("cors")
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: "http://127.0.0.1:5500" // Tylko dla tej domeny
+}))
 var mysql = require("mysql");
 
 var con =  mysql.createConnection({
@@ -29,7 +31,7 @@ app.get("/get-stoliki", (req,res)=>{
 })
 
 // dodawanie stolika
-app.get("/add-stolik/:ilosc_osob/:czy_zarezerwowane", (req,res)=>{
+app.get("/add-table/:ilosc_osob/:czy_zarezerwowane", (req,res)=>{
     let ilosc_osob = parseInt(req.params.ilosc_osob)
     let czy_zarezerwowane = req.params.czy_zarezerwowane
     const sql = `insert into stoliki (max_liczba_os, czy_zarezerwowano) values (${ilosc_osob}, '${czy_zarezerwowane}')`
@@ -48,6 +50,26 @@ app.get("/add-stolik/:ilosc_osob/:czy_zarezerwowane", (req,res)=>{
 //     })
 // })
 
+// dodwanie rezerwacji 
+app.get("/add-rezerwacja/:id_klienta/:id_stolika/:data/:godzina/:liczba_os", (req,res)=>{
+    let id_klienta = parseInt(req.params.id_klienta)
+    let id_stolika = parseInt(req.params.id_stolika)
+    let data = req.params.data
+    let godzina = req.params.godzina
+    let liczba_os = parseInt(req.params.liczba_os)
+
+    const sqlInsert = `insert into rezerwacje (id_klienta, id_stolika, data, godzina, liczba_os) values (${id_klienta}, ${id_stolika}, '${data}', '${godzina}')`
+    const sqlUpdate = `update stoliki set czy_zarezerwowano = 'tak' where id = ${id_stolika}`
+
+    con.query(sqlInsert,(err,wynik, info_wynik)=>{
+        res.send("doano rezerwacje")
+        console.log(info_wynik);
+    })
+    con.query(sqlUpdate,(err,wynik,info_wynik)=>{
+        res.send("zatualizowano stolik")
+        console.log(info_wynik);
+    })  
+})
 // wyswietlanie menu
 app.get("/get-menu", (req,res)=>{
     const sql = `select * from menu`
