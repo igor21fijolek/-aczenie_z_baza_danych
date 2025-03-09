@@ -108,6 +108,7 @@ async function dodaj_stolik() {
 }
 
 async function pokaz_stolik() {
+    let main = document.querySelector("#stolik")
     let tab = document.querySelector("table")
     if (tab != null) { tab.remove() }
     let tabela = document.createElement("table")
