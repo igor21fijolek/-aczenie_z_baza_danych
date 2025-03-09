@@ -108,9 +108,10 @@ async function dodaj_stolik() {
 }
 
 async function pokaz_stolik() {
-    let main = document.querySelector("#stolik")
-    let tab = document.querySelector("table")
-    if (tab != null) { tab.remove() }
+    let main = document.querySelector("#stolik-lista-rezerwacji")
+    main.innerHTML = ""
+    // let tab = document.querySelector("table")
+    // if (tab != null) { tab.remove() }
     let tabela = document.createElement("table")
     tabela.innerHTML = `
       <table>
@@ -138,9 +139,8 @@ async function pokaz_stolik() {
 }
 
 async function zarezerwuj_stolik() {
-        let main = document.querySelector("#stoliki")
-        let tab = document.querySelector("table")
-        if (tab != null) { tab.remove() }
+        let main = document.querySelector("#stolik-lista-rezerwacji")
+        main.innerHTML = ""
         let tabela = document.createElement("table")
         tabela.innerHTML = `
           <table>
@@ -171,7 +171,7 @@ async function zarezerwuj_stolik() {
                 let liczba_os = data[i].max_liczba_os
                 await fetch(`http://localhost:3000/add-rezerwacja/${id_klienta}/${id_stolika}/${data_rezerwacji}/${godzina_rezerwacji}/${liczba_os}`)
                 alert("zarezerwowano")
-                pokaz_stolik()
+                zarezerwuj_stolik()
             })
             tr.appendChild(tdOsoby)
             tr.appendChild(tdCzyZare)
