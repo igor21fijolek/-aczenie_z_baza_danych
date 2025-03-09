@@ -121,15 +121,17 @@ table,td,th{
 td,th{
     padding: 5px;
 }
-table {
-    
-    margin-bottom: 20px; }
+table { 
+ margin-bottom: 20px; 
+}
 button {
-    padding: 5px ;
+    padding: 5px;
     border: none;
     border-radius: 5px;
     background-color: darkgray;
-    color: black
+    color: black;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    margin-bottom: 10px;
 }
 hr{
     width: 95%;
@@ -169,25 +171,15 @@ th,td{
     width: 20%;
     margin: 5px;
 }
-#stoliki {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; 
-    margin: 0px auto;
-    text-align: center;
-}
 
-#stoliki table {
+#stolik-lista-rezerwacji table {
     width: 50%;
     margin: 0px auto;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
 }
-#stolik{
+#stolik-lista-rezerwacji{
     width: 100%;
     text-align: center;
     display: flex;
@@ -197,7 +189,25 @@ th,td{
     margin: 0px auto;
     text-align: center;
 }
-#stolik  th, td {
+#stolik-lista-rezerwacji  th, td {
     border: 1px solid black;
     padding: 5px;
+}
+input{
+    border:1px solid black;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: lightgreen;
+    transform: scale(1.1);
+}
+
+input{
+    transition:  transform 0.3s ease;
+    margin: 5px;
+}
+input:hover{
+    padding: 5px;
+    transform: scale(1.1);
 }
