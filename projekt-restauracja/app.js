@@ -180,3 +180,81 @@ async function zarezerwuj_stolik() {
         }
         main.appendChild(tabela)
     }
+
+
+async function pokaz_rezerwacje() {
+    let main = document.querySelector("#rezerwacje")
+    main.innerHTML = ""
+    let table = document.createElement("table")
+    table.innerHTML = `
+        <table>
+            <tr>
+                <th>id klienta</th>
+                <th>id stolika</th>
+                <th>data rezerwacji</th>
+                <th>godzina rezerwacji</th>
+                <th>liczba osób</th>
+            </tr>
+        </table>
+    `
+    let res  = await fetch(`http://localhost:3000/get-rezerwacje`)
+    let data  = await res.json()
+    for(let i = 0; i< data.length; i++){
+        let tr = document.createElement("tr")
+        let tdIdKlienta = document.createElement("td")
+        let tdIdStolika = document.createElement("td")
+        let tdIdData = document.createElement("td")
+        let tdIdGodzina = document.createElement("td")
+        let tdIdLiczbaOs = document.createElement("td")
+        //przetwarzanie daty
+        const dataRezerwacji = new Date(data[i].data_rezerwacji);
+        const dataSformatowana = dataRezerwacji.toISOString().split("T")[0];
+        tdIdKlienta.innerHTML = data[i].id_klienta
+        tdIdStolika.innerHTML = data[i].id_stolika
+        tdIdData.innerHTML = dataSformatowana
+        tdIdGodzina.innerHTML = data[i].godzina_rezerwacji
+        tdIdLiczbaOs.innerHTML = data[i].liczba_os
+        tr.appendChild(tdIdKlienta)
+        tr.appendChild(tdIdStolika)
+        tr.appendChild(tdIdData)
+        tr.appendChild(tdIdGodzina)
+        tr.appendChild(tdIdLiczbaOs)
+        table.appendChild(tr)
+    }
+    main.appendChild(table)
+}
+
+async function pokaz_propozycje() {
+    let main = document.querySelector("#propozycje")
+    main.innerHTML = ""
+    let table = document.createElement("table")
+    table.innerHTML = `
+        <table>
+            <tr>
+                <th>nazwa dania</th>
+                <th>typ dania</th>
+                <th>cena</th>
+                <th>id klienta</th>
+            </tr>
+        </table>
+    `
+    let res = await fetch("http://localhost:3000/get-sugestion")
+    let data  = await res.json()
+    for(let i = 0; i< data.length; i++){
+        let tr =document.createElement("tr")
+        let tdNazwa = document.createElement("td")
+       let tdTYP = document.createElement("td")
+        let tdCena = document.createElement("td")
+        let tdIdKlienta = document.createElement("td")
+        tdNazwa.innerHTML = data[i].nazwa
+        tdTYP.innerHTML =data[i].typ_dania
+        tdCena.innerHTML = data[i].cena
+        tdIdKlienta.innerHTML = data[i].id_klienta
+        tr.appendChild(tdNazwa)
+        tr.appendChild(tdTYP)
+        tr.appendChild(tdCena)
+        tr.appendChild(tdIdKlienta)
+        table.appendChild(tr)
+    }
+    main.appendChild(table)
+}

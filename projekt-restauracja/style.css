@@ -64,13 +64,14 @@ a {
     padding: 10px;
     background-color: #DCEAF4; 
     border-radius: 20px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
     color: rgb(73, 63, 63);
 }
 
 .nav a:hover {
     background-color: #732626; 
     color: #F7F5F2; 
+    transform: scale(1.1); 
 }
 
 h1 {
@@ -94,12 +95,13 @@ h1 {
     padding: 10px;
     background-color: #e8eff5; 
     border-radius: 20px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     color: rgb(73, 63, 63);
 }
 .nav-2 a:hover {
     background-color: #4b3636; 
     color: #F7F5F2; 
+    transform: scale(1.1);
 }
 .main input, label{
     padding: 5px;
@@ -199,7 +201,7 @@ input{
 }
 
 button:hover {
-    background-color: lightgreen;
+    background-color: rgb(144, 200, 238);
     transform: scale(1.1);
 }
 
@@ -210,4 +212,40 @@ input{
 input:hover{
     padding: 5px;
     transform: scale(1.1);
+}
+#rezerwacje{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#rezereacje table{
+    width: 50%;
+    margin: 0px auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#propozycje{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#propozycje table{
+    width: 50%;
+    margin: 0px auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#propozycje button{
+    width:18%;
+
 }

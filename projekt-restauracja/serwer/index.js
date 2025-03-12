@@ -80,6 +80,16 @@ app.get("/add-rezerwacja/:id_klienta/:id_stolika/:data/:godzina/:liczba_os", (re
     res.send("dodano rezerwacje i zaktualizowano stolik");
     // res.send("dodano rezerwacje i zaktualizowano stolik");
 })
+
+// wyswietlanie rezerwacji
+app.get("/get-rezerwacje",(req,res)=>{
+    const sql  = `select * from rezerwacje`
+    con.query(sql, (err, wynik, info_wynik)=>{
+        res.send(wynik)
+        console.log(info_wynik);
+    })
+})
+
 // wyswietlanie menu
 app.get("/get-menu", (req,res)=>{
     const sql = `select * from menu`
