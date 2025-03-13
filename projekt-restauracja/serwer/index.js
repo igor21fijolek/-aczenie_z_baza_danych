@@ -41,23 +41,12 @@ app.get("/add-table/:ilosc_osob/:czy_zarezerwowane", (req,res)=>{
     })
 })
 
-// // wyswietlanie klientow
-// app.get("/klienci", (req,res)=>{
-//     const sql = `select * from klienci`
-//     con.query(sql, (err, wynik, info_wynik)=>{
-//         res.send(wynik)
-//         console.log(info_wynik);
-//     })
-// })
-
 app.get("/test",(req,res)=>{
     res.send("dziala")
 })
 
 // dodwanie rezerwacji 
 app.get("/add-rezerwacja/:id_klienta/:id_stolika/:data/:godzina/:liczba_os", (req,res)=>{
-    // res.send("ok")
-    // return
     let id_klienta = parseInt(req.params.id_klienta)
     let id_stolika = parseInt(req.params.id_stolika)
     let data = req.params.data
@@ -70,15 +59,24 @@ app.get("/add-rezerwacja/:id_klienta/:id_stolika/:data/:godzina/:liczba_os", (re
     console.log(sqlInsert);
 
     con.query(sqlInsert,(err,wynik, info_wynik)=>{
-        // res.send("doano rezerwacje")
+        
         console.log(info_wynik);
     })
     con.query(sqlUpdate,(err,wynik,info_wynik)=>{
-        // res.send("zatualizowano stolik")
+       
         console.log(info_wynik);
     })  
     res.send("dodano rezerwacje i zaktualizowano stolik");
-    // res.send("dodano rezerwacje i zaktualizowano stolik");
+})
+
+// usuniecie rezerwacji
+app.get("/delete-rezerwacja/:id", (req,res)=>{
+    let id = parseInt(req.params.id)
+    const sql  = `delete from rezerwacje where id = ${id}`
+    con.query(sql, (err,wynik,info_wynik)=>{
+        res.send("usunieto rezerwacje")
+        console.log(info_wynik);
+    })
 })
 
 // wyswietlanie rezerwacji

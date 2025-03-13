@@ -194,6 +194,7 @@ async function pokaz_rezerwacje() {
                 <th>data rezerwacji</th>
                 <th>godzina rezerwacji</th>
                 <th>liczba osób</th>
+                <th>usuń rezerwacje</th>
             </tr>
         </table>
     `
@@ -206,6 +207,13 @@ async function pokaz_rezerwacje() {
         let tdIdData = document.createElement("td")
         let tdIdGodzina = document.createElement("td")
         let tdIdLiczbaOs = document.createElement("td")
+        let tdUsun = document.createElement("button")
+        tdUsun.innerHTML= "Usun rezerwacje"
+        tdUsun.addEventListener("click", async function(){
+            await fetch(`http://localhost:3000/delete-rezerwacja/${data[i].id}`)
+            alert("usunieto rezerwacje")
+            pokaz_rezerwacje()
+        })
         //przetwarzanie daty
         const dataRezerwacji = new Date(data[i].data_rezerwacji);
         const dataSformatowana = dataRezerwacji.toISOString().split("T")[0];
@@ -219,6 +227,7 @@ async function pokaz_rezerwacje() {
         tr.appendChild(tdIdData)
         tr.appendChild(tdIdGodzina)
         tr.appendChild(tdIdLiczbaOs)
+        tr.appendChild(tdUsun)
         table.appendChild(tr)
     }
     main.appendChild(table)

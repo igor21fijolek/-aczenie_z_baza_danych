@@ -17,6 +17,7 @@ body {
     border-radius: 10px;
     height: auto;
     background-color: #FFFFFF; 
+    box-shadow:   black;
 }
 
 .main img {
@@ -35,6 +36,7 @@ body {
 .flex {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .flex img {
@@ -50,7 +52,7 @@ body {
     background-color: #6C9E6A; 
     border-radius: 10px;
     height: 100px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 5px;
 }
 
@@ -248,4 +250,7 @@ input:hover{
 #propozycje button{
     width:18%;
 
+}
+#rezerwacje table button{
+    margin-top: 5px ;
 }
