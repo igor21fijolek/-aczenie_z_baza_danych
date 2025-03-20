@@ -164,7 +164,7 @@ async function zarezerwuj_stolik() {
             tdCzyZare.innerHTML = data[i].czy_zarezerwowano
             tdZare.innerHTML = "zarezerwuj"
             tdZare.addEventListener("click", async function () {
-                let id_klienta = prompt("podaj id klienta")
+                let id_klienta = prompt("podaj imie ")
                 let id_stolika = data[i].id
                 let data_rezerwacji = prompt("podaj date")
                 let godzina_rezerwacji = prompt("podaj godzine")
