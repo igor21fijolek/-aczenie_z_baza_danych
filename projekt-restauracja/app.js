@@ -22,9 +22,9 @@ async function menu(){
         const tddanie = document.createElement("td")
         const tdcena = document.createElement("td")
         const tdtyp = document.createElement("td")
-        tddanie.innerHTML = data[i].nazwa;
-        tdcena.innerHTML = data[i].cena;
-        tdtyp.innerHTML = data[i].typ_dania;
+        tddanie.innerHTML = data[i].nazwa
+        tdcena.innerHTML = data[i].cena
+        tdtyp.innerHTML = data[i].typ_dania
         tr.appendChild(tddanie)
         tr.appendChild(tdcena)
         tr.appendChild(tdtyp)
@@ -34,65 +34,65 @@ async function menu(){
 }
 
 async function dodaj_menu() {
-    let danieInput = document.getElementById("nazwa_dania");
-    let cenaInput = document.getElementById("cena");
-    let typDaniaInput = document.getElementById("typ_dania");
+    let danieInput = document.getElementById("nazwa_dania")
+    let cenaInput = document.getElementById("cena")
+    let typDaniaInput = document.getElementById("typ_dania")
 
-    let danie = danieInput.value;
-    let cena = cenaInput.value;
-    let typ_dania = typDaniaInput.value;
+    let danie = danieInput.value
+    let cena = cenaInput.value
+    let typ_dania = typDaniaInput.value
 
-    await fetch(`http://localhost:3000/menu-add/${danie}/${cena}/${typ_dania}`);
+    await fetch(`http://localhost:3000/menu-add/${danie}/${cena}/${typ_dania}`)
 
-    alert("Dodano do menu");
+    alert("Dodano do menu")
 
   
-    danieInput.value = "";
-    cenaInput.value = "";
-    typDaniaInput.value = "";
+    danieInput.value = ""
+    cenaInput.value = ""
+    typDaniaInput.value = ""
 }
 
 async function zapsiz_klienta() {
-    let imieInput = document.getElementById("imie");
-    let nazwiskoInput = document.getElementById("nazwisko");
-    let telefonInput = document.getElementById("telefon");
-    let emailInput = document.getElementById("email");
+    let imieInput = document.getElementById("imie")
+    let nazwiskoInput = document.getElementById("nazwisko")
+    let telefonInput = document.getElementById("telefon")
+    let emailInput = document.getElementById("email")
 
-    let imie = imieInput.value;
-    let nazwisko = nazwiskoInput.value;
-    let telefon = telefonInput.value;
-    let email = emailInput.value;
+    let imie = imieInput.value
+    let nazwisko = nazwiskoInput.value
+    let telefon = telefonInput.value
+    let email = emailInput.value
 
     await fetch(`http://localhost:3000/client-add/${imie}/${nazwisko}/${telefon}/${email}`);
-    alert("Dodano do restauracji");
+    alert("Dodano do restauracji")
 
     
-    imieInput.value = "";
-    nazwiskoInput.value = "";
-    telefonInput.value = "";
-    emailInput.value = "";
+    imieInput.value = ""
+    nazwiskoInput.value = ""
+    telefonInput.value = ""
+    emailInput.value = ""
 }
 
 async function dodaj_sugestia_klienta() {
     let nazwaInput = document.getElementById("danie")
     let typInput = document.getElementById("typ_dania")
     let cenaInput = document.getElementById("cena_danie")
-    let idInput = document.getElementById("id_klienta")
+    let imieInput = document.getElementById("imie_klienta")
 
 
     let nazawa = nazwaInput.value
     let typ = typInput.value
     let cena = cenaInput.value
-    let id = idInput.value
+    let imie = imieInput.value
 
-    await fetch(`http://localhost:3000/add-sugestion/${nazawa}/${typ}/${cena}/${id}`)
+    await fetch(`http://localhost:3000/add-sugestion/${nazawa}/${typ}/${cena}/${imie}`)
     alert("Dodano propozycje")
 
 
     nazwaInput.value = ""
     typInput.value = ""
     cenaInput.value = ""
-    idInput.value = ""
+    imieInput.value = ""
 }
 async function dodaj_stolik() {
     let liczbaOs = document.getElementById("liczba_os")

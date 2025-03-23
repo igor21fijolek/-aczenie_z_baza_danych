@@ -75,7 +75,7 @@ app.get("/delete-rezerwacja/:id", (req,res)=>{
     con.query(sqlSelect, (err, wynik, info_wynik)=>{
         console.log(info_wynik);
         id_stolika = wynik[0].id_stolika
-    })
+    
     const sql  = `delete from rezerwacje where id = ${id}`
     const sqlUpdate = `update stoliki set czy_zarezerwowano = 'nie' where id = ${id_stolika}`
     con.query(sql, (err,wynik,info_wynik)=>{
@@ -85,7 +85,7 @@ app.get("/delete-rezerwacja/:id", (req,res)=>{
         console.log(info_wynik);
     })
     res.send("usunieto rezerwacje i zaktualizowano stolik")
-    
+    })
 })
 
 
@@ -108,12 +108,12 @@ app.get("/get-menu", (req,res)=>{
 })
 
 // dodanie sugesti klienta do tabeli propozycje
-app.get("/add-sugestion/:danie/:typDania/:cena/:id", (req,res)=>{
+app.get("/add-sugestion/:danie/:typDania/:cena/:imie", (req,res)=>{
     let danie = req.params.danie
     let typ_dania = req.params.typDania
     let cena = parseFloat(req.params.cena)
-    let id_klienta = parseInt(req.params.id)
-    const sql = `insert into propozycje_klientow (nazwa, typ_dania, cena, id_klienta) values ('${danie}', '${typ_dania}', ${cena}, ${id_klienta})`
+    let imie_klienta = req.params.imie
+    const sql = `insert into propozycje_klientow (nazwa, typ_dania, cena, imie_klienta) values ('${danie}', '${typ_dania}', ${cena}, '${imie_klienta}')`
     con.query(sql, (err, wynik, info_wynik)=>{
         res.send("dodano rekord")
         console.log(info_wynik);
