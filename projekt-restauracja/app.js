@@ -1,5 +1,6 @@
 let main = document.querySelector(".main")
 async function menu(){
+    let main = document.querySelector(".main-menu")
     let tab = document.querySelector("table")
     if (tab != null) { tab.remove() }
     let tabela = document.createElement("table")
@@ -116,7 +117,7 @@ async function pokaz_stolik() {
     tabela.innerHTML = `
       <table>
             <tr>
-                <th>lizcba osób</th>
+                <th>lizczba osób</th>
                 <th>czy zarezerwowane</th>
             </tr>
         </table>  
@@ -164,14 +165,14 @@ async function zarezerwuj_stolik() {
             tdCzyZare.innerHTML = data[i].czy_zarezerwowano
             tdZare.innerHTML = "zarezerwuj"
             tdZare.addEventListener("click", async function () {
-                let id_klienta = prompt("podaj imie ")
+                let imie_klienta = prompt("podaj imie ")
                 let id_stolika = data[i].id
                 let data_rezerwacji = prompt("podaj date")
                 let godzina_rezerwacji = prompt("podaj godzine")
                 let liczba_os = data[i].max_liczba_os
-                await fetch(`http://localhost:3000/add-rezerwacja/${id_klienta}/${id_stolika}/${data_rezerwacji}/${godzina_rezerwacji}/${liczba_os}`)
+                await fetch(`http://localhost:3000/add-rezerwacja/${imie_klienta}/${id_stolika}/${data_rezerwacji}/${godzina_rezerwacji}/${liczba_os}`)
                 alert("zarezerwowano")
-                zarezerwuj_stolik()
+                pokaz_stolik()
             })
             tr.appendChild(tdOsoby)
             tr.appendChild(tdCzyZare)
@@ -189,7 +190,7 @@ async function pokaz_rezerwacje() {
     table.innerHTML = `
         <table>
             <tr>
-                <th>id klienta</th>
+                <th>imie klienta</th>
                 <th>id stolika</th>
                 <th>data rezerwacji</th>
                 <th>godzina rezerwacji</th>
@@ -202,7 +203,7 @@ async function pokaz_rezerwacje() {
     let data  = await res.json()
     for(let i = 0; i< data.length; i++){
         let tr = document.createElement("tr")
-        let tdIdKlienta = document.createElement("td")
+        let tdImieKlienta = document.createElement("td")
         let tdIdStolika = document.createElement("td")
         let tdIdData = document.createElement("td")
         let tdIdGodzina = document.createElement("td")
@@ -217,12 +218,12 @@ async function pokaz_rezerwacje() {
         //przetwarzanie daty
         const dataRezerwacji = new Date(data[i].data_rezerwacji);
         const dataSformatowana = dataRezerwacji.toISOString().split("T")[0];
-        tdIdKlienta.innerHTML = data[i].id_klienta
+        tdImieKlienta.innerHTML = data[i].imie_klienta
         tdIdStolika.innerHTML = data[i].id_stolika
         tdIdData.innerHTML = dataSformatowana
         tdIdGodzina.innerHTML = data[i].godzina_rezerwacji
         tdIdLiczbaOs.innerHTML = data[i].liczba_os
-        tr.appendChild(tdIdKlienta)
+        tr.appendChild(tdImieKlienta)
         tr.appendChild(tdIdStolika)
         tr.appendChild(tdIdData)
         tr.appendChild(tdIdGodzina)

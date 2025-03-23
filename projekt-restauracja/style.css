@@ -206,15 +206,6 @@ button:hover {
     background-color: rgb(144, 200, 238);
     transform: scale(1.1);
 }
-
-input{
-    transition:  transform 0.3s ease;
-    margin: 5px;
-}
-input:hover{
-    padding: 5px;
-    transform: scale(1.1);
-}
 #rezerwacje{
     width: 100%;
     margin-left: auto;
@@ -253,4 +244,12 @@ input:hover{
 }
 #rezerwacje table button{
     margin-top: 5px ;
+}
+.main-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-menu table{
+    width:60%;
 }
